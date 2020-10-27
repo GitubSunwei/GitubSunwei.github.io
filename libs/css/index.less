@@ -1,0 +1,116 @@
+@fontColor: #fff;
+@fontSize: 20px;
+body{
+    color: #353535;
+    font: 20px/1.5 "Microsoft";
+}
+.aun{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+}
+// 侧边栏
+.asideBar{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    color: @fontColor;
+    background-color: #10202f;
+    
+    .logo{
+        width: 100%;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+    }
+    .avatar{
+        width: 100%;
+        height: 190px;
+        position: relative;
+        overflow: hidden;
+
+        .avatar-border{
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            // margin: 0 auto;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -65px;
+            margin-left: -65px;
+            overflow: hidden;
+        }
+        img{
+            width: 100%;
+        }
+    }
+    .nav{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        a{
+            color: @fontColor;
+            font-size: @fontSize;
+            padding: 1em;
+            width: 100%;
+            display: block;
+            text-align: center;
+            .aun;
+        }
+        a:hover{
+            background-color: #203448;
+        }
+    }
+}
+
+// 主要内容
+main{
+    margin-left: 300px;
+
+    section{
+        padding: 5em 0;
+    }
+
+    // 1.0关于我
+    .aboutMe{
+        background: url(../img/bg-1.png);
+        .wrap{
+            margin: 0 auto;
+            max-width: 1000px;
+            font-weight: bold;
+            
+        }
+        .title{
+            font-size: 30px;
+            font-weight: 600;
+            padding: 40px 0;
+
+            span{
+                color: orange;
+            }
+        }
+
+        .row{
+            li{
+                margin: 16px 0px;
+                a{
+                    color: #c40b00;
+                    .aun;
+                }
+                a:hover{
+                    color: orange;
+                }
+                img{
+                    width: 30px;
+                    height: 21px;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+    
+}

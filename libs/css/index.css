@@ -1,0 +1,98 @@
+body {
+  color: #353535;
+  font: 20px/1.5 "Microsoft";
+}
+.aun {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+.asideBar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  color: #fff;
+  background-color: #10202f;
+}
+.asideBar .logo {
+  width: 100%;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+}
+.asideBar .avatar {
+  width: 100%;
+  height: 190px;
+  position: relative;
+  overflow: hidden;
+}
+.asideBar .avatar .avatar-border {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -65px;
+  margin-left: -65px;
+  overflow: hidden;
+}
+.asideBar .avatar img {
+  width: 100%;
+}
+.asideBar .nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.asideBar .nav a {
+  color: #fff;
+  font-size: 20px;
+  padding: 1em;
+  width: 100%;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+.asideBar .nav a:hover {
+  background-color: #203448;
+}
+main {
+  margin-left: 300px;
+}
+main section {
+  padding: 5em 0;
+}
+main .aboutMe {
+  background: url(../img/bg-1.png);
+}
+main .aboutMe .wrap {
+  margin: 0 auto;
+  max-width: 1000px;
+  font-weight: bold;
+}
+main .aboutMe .title {
+  font-size: 30px;
+  font-weight: 600;
+  padding: 40px 0;
+}
+main .aboutMe .title span {
+  color: orange;
+}
+main .aboutMe .row li {
+  margin: 16px 0px;
+}
+main .aboutMe .row li a {
+  color: #c40b00;
+  text-decoration: none;
+}
+main .aboutMe .row li a:hover {
+  color: orange;
+}
+main .aboutMe .row li img {
+  width: 30px;
+  height: 21px;
+  vertical-align: middle;
+}
