@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+
+        .img-auto {
+            width: 100%;
+        }
+
+        .wrap {
+            position: relative;
+            width: 1200px;
+            height: 700px;
+            left: 300px;
+            top: 50px;
+        }
+
+        .wrap .small-box {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+
+        .wrap .move {
+            width: 200px;
+            height: 200px;
+            background: rgba(152, 177, 206, 0.6);
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            display: none;
+        }
+
+        .xiao{
+            width: 400px;
+            height: 60px;
+            border: 1px solid #000;
+            border-top: 1px solid transparent;
+            position: absolute;
+            top: 400px;
+        }
+        .xiao ul{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+
+        }
+        .xiao li{
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .wrap .big-box {
+            width: 400px;
+            height: 400px;
+            border: 1px solid purple;
+            position: absolute;
+            left: 460px;
+            /* 超出部分隐藏 */
+            overflow: hidden;
+            display: none;
+        }
+
+        .wrap .big-box img {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="small-box">
+            <img class="img-auto" src="./img/yellow.jpg" alt="">
+            <div class="move"></div>
+        </div>
+        <div class="xiao">
+            <ul>
+                <li class="active">
+                    <img class="img-auto" src="./img/1.jpg" alt="">
+                </li>
+                <li>
+                    <img class="img-auto" src="./img/2.jpg" alt="">
+                </li>
+                <li>
+                    <img class="img-auto" src="./img/3.jpg" alt="">
+                </li>
+                <li>
+                    <img class="img-auto" src="./img/4.jpg" alt="">
+                </li>
+                <li>
+                    <img class="img-auto" src="./img/yellow.jpg" alt="">
+                </li>
+            </ul>
+        </div>
+        <div class="big-box">
+            <img src="./img/yellow.jpg" alt="">
+        </div>
+    </div>
+    
+    <script>
+        // 1.0获取元素
+        var wrap_ele = document.querySelector('.wrap');
+        var smallBox = document.querySelector('.small-box');
+        var smallImg = document.querySelector('.small-box img');
+        var bigBox = document.querySelector('.big-box');
+        var Move = document.querySelector('.move');
+        var bigImg = document.querySelector('.big-box img');
+        var xiaoImg = document.querySelectorAll('.xiao img');
+
+        var arrImg = ['./img/1.jpg','./img/2.jpg','./img/3.jpg','./img/4.jpg','./img/yellow.jpg'];
+        console.log(xiaoImg)
+        for(var i=0; i<xiaoImg.length; i++){
+            xiaoImg[i].onclick = function(item){
+                return function(){
+                    console.log(item)
+                    smallImg.setAttribute('src',arrImg[item]);
+                    bigImg.setAttribute('src',arrImg[item]);
+                }
+            }(i)
+        }
+        
+
+        // 获取移动盒子的宽度
+        // var mWidth = Move.clientWidth;
+        // var mHeight = Move.clientHeight;
+
+        // 2.0当进入小图片，显示浮动层，显示大图片盒子
+        smallBox.onmouseover = function(){
+            // 2.0.1移入显示
+            Move.style.display = 'block';
+            bigBox.style.display = 'block';
+        }
+        smallBox.onmouseout = function(){
+            // 2.0.2移出隐藏
+            Move.style.display = 'none';
+            bigBox.style.display = 'none';
+        }
+        smallBox.onmousemove = function(e){
+            // 定义变量来设置移动层的坐标
+            var x = e.clientX - wrap_ele.offsetLeft - Move.offsetWidth/2;
+            var y = e.clientY - wrap_ele.offsetTop - Move.offsetHeight/2;
+            if(x<0){
+                x=0;
+            }
+            if(x>smallBox.clientWidth - Move.clientWidth){
+                x=smallBox.clientWidth - Move.clientWidth;
+            };
+            if(y<0){
+                y=0;
+            }
+            if(y>smallBox.clientHeight - Move.clientHeight){
+                y=smallBox.clientHeight - Move.clientHeight;
+            }
+            Move.style.left = x + 'px';
+            Move.style.top = y + 'px';
+
+            var bigX = x*(bigImg.clientWidth - bigBox.clientWidth)/(smallBox.clientWidth-Move.clientWidth);
+            var bigY = y*(bigImg.clientHeight - bigBox.clientHeight)/(smallBox.clientHeight-Move.clientHeight)
+            bigImg.style.left = -bigX+'px';
+            bigImg.style.top = -bigY+'px';
+        }
+
+    </script>
+</body>
+
+</html>
