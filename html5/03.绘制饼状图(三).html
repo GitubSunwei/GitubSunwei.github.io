@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>绘制饼状图（三）</title>
+</head>
+
+<body>
+
+    <canvas id="canvas">不支持canvas标签，请换浏览器！</canvas>
+
+    <script src="./data.js"></script>
+    <script>
+        // 三步走
+        var canvas = document.getElementById("canvas");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        var ctx = canvas.getContext("2d");
+
+        // 主要代码
+        // 1.0 公共函数
+        // 绘制扇形
+        function drawCircle(x, y, r, s, e, color) {
+            // 默认参数值
+            var color = color || "skyblue";
+            ctx.beginPath();
+            ctx.fillStyle = color;
+            ctx.moveTo(x, y); //圆心坐标
+            ctx.arc(x, y, r, s, e, false);
+            ctx.closePath();
+            ctx.fill();
+        }
+        // drawCircle(100,100,50,0,45*Math.PI/180,"red")
+        // 绘制线
+        function drawLine(x0, y0, x1, y1, color) {
+            var color = color || "skyblue";
+            ctx.beginPath();
+            ctx.strokeStyle = color;
+            ctx.moveTo(x0, y0);
+            ctx.lineTo(x1, y1);
+            ctx.stroke();
+        }
+        // drawLine(100,100,200,200,"red")
+        // 绘制文本
+        function drawText(text, x, y, color) {
+            var color = color || "#000";
+            ctx.beginPath();
+            ctx.font = "16px 宋体";
+            ctx.fillStyle = color;
+            ctx.fillText(text, x, y);
+            ctx.closePath();
+        }
+        // drawText("hello ",100,100,"red")
+
+        // 定义坐标原点（中心点）
+        var point = {
+            x: 500,
+            y: 300
+        }
+        // 定义全局变量 
+        // 记录弧度
+        var startAngle = 0;
+        var endAngle = data[0].persent * 360 * Math.PI/180;
+        // 记录角度
+        var sAngle = 0;
+        var eAngle = 0;
+        // 循环数据
+        for(var i = 0 ; i < data.length ; i++){
+            // 一月份 
+            endAngle = startAngle + data[i].persent * 360 * Math.PI/180;
+            // 绘制扇形
+            drawCircle(
+                point.x, 
+                point.y,
+                100,
+                startAngle,
+                endAngle,
+                data[i].color
+            )
+            // 中间线
+            var v1 = startAngle + (data[i].persent * 360 * Math.PI/180)/ 2 
+            drawLine(
+                point.x + Math.cos(v1) * 50,
+                point.y + Math.sin(v1) * 50,
+                point.x + Math.cos(v1) * 150,
+                point.y + Math.sin(v1) * 150
+            )
+            // 横线
+            // 判断条件
+            // < 360 && > 180  向左边延伸
+            eAngle = sAngle + data[i].persent * 360 
+            var v2 = sAngle + data[i].persent * 360 / 2;
+            // 定义变量记录 坐标位置
+            var l = point.x + Math.cos(v1) * 150;
+            var t = point.y + Math.sin(v1) * 150;
+            if( v2 < 270 && v2  > 90){
+                 // -120 左边的横线
+                 drawLine(
+                    l,
+                    t,
+                    l - 120,
+                    t
+                )
+                drawText(
+                    data[i].month+" " +data[i].persent ,
+                    l-120,
+                    t
+                )
+            }else {
+                // +120 右边的横线
+                drawLine(
+                    l,
+                    t,
+                    l + 120,
+                    t
+                )
+                drawText(
+                    data[i].month+" " +data[i].persent,
+                    l,
+                    t
+                )
+            }
+            sAngle = eAngle ;
+
+            // 绘制文本
+            // drawText(
+            //     data[i].month,
+            //     point.x + Math.cos(v1) * 150,
+            //     point.y + Math.sin(v1) * 150
+            // )
+
+
+
+
+
+            // 第一次循环 记录一月份结束的弧度
+            // 第二次循环 记录二月份结束的弧度
+            // ...
+            startAngle = endAngle;
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹幕</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        input {
+            outline: none;
+            width: 300px;
+            height: 30px;
+        }
+
+        .w {
+            width: 1200px;
+            margin: 100px auto;
+        }
+        /* 弹幕层开始 */
+        .wrap{
+            width: 800px;
+            height: 550px;
+            margin: 0 auto;
+            position: relative;
+        }
+/*         .main {
+            font-size: 0px;
+        } */
+        /* 弹幕的图 */
+        .main .bgImg {
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+            border: 1px solid #eee;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .main .bgImg>img {
+            width: 800px;
+            height: 500px;
+        }
+        .main .bgImg span{
+            /* width: 260px;
+            height: 26px; */
+            /* width: 100%; */
+            white-space: nowrap;
+            color: red;
+            position: absolute;
+        }
+        .main .bgImg span img{
+            vertical-align: bottom;
+        }
+        /* 表情部分 */
+        .biaoQing{
+            width: 360px;
+            height: 136px;
+            background-color: white;
+            position: absolute;
+            right: -1px;
+            bottom: 40px;
+            display: none;
+        }
+
+        /* 发送弹幕层 */       
+        .dan {
+            height: 30px;
+            width: 760px;
+            margin: 0 auto;
+            border: 1px solid #eee;
+            padding: 10px 20px;
+            font-size: 0;
+        }
+
+        .dan #content {
+            background-color: #f4f4f4;
+            vertical-align: middle;
+            outline: none;
+            border: 0px;
+            width: 663px;
+            height: 30px;
+            text-indent: 13px;
+        }
+
+        .dan img {
+            width: 24px;
+            height: 24px;
+            vertical-align: bottom;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-right: 7px;
+            background-color: #f4f4f4;
+        }
+        .dan .send{
+            width: 60px;
+            height: 30px;
+            background-color: #00a1d6;
+            vertical-align: bottom;
+            outline: none;
+            border: 0px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main w">
+        <!-- 弹幕层开始 -->
+        <div class="wrap">
+            <!-- 弹幕的图 -->
+            <div class="bgImg">
+                <img src="./images/bg.jpg" alt="">
+                <!-- <span>好难啊，你为什么不显示出来</span> -->
+            </div>
+            <!-- 表情部分 -->
+            <div class="biaoQing">
+                <!-- <img src="./images/1.gif" alt=""> -->
+            </div>
+            <!-- 底部输入弹幕 -->
+            <div class="dan">
+                <input id="content" type="text" placeholder="发个弹幕见证当下">
+                <img src="./images/biaoqing.png" alt="">
+                <button class="send">发送</button>
+            </div>
+        </div>
+        
+    </div>
+    <script>
+        //获取弹幕图
+        var bgImg=document.querySelector('.bgImg');
+        // 获取表情标签
+        var biaoQing=document.querySelector('.biaoQing');
+        // 获取输入弹幕的input盒子
+        var input1=document.querySelector('.dan input')
+        // 获取发送按钮
+        var Send=document.querySelector('.dan .send');
+        // 循环添加表情
+        for(var i=1;i<=75;i++){
+            // 定义一个图片标签
+            var img1=document.createElement('img');
+            img1.src='./images/'+i+'.gif'
+            biaoQing.appendChild(img1);
+        }
+        // 获取底部输入弹幕的图片
+        var danImg=document.querySelector('.dan img');
+        var flag=true;
+        // 给底部输入框的图片一个单击事件
+         danImg.onclick=function(){
+            if(flag){
+                biaoQing.style.display='block';
+                flag=false;
+            }else{
+                biaoQing.style.display='none';
+                flag=true;
+            }            
+        }
+
+        // 获取表情盒子里的img
+        var smallImg=document.querySelectorAll('.biaoQing img')
+        //把图片循环出来
+        for(var i=0;i<smallImg.length;i++){
+            smallImg[i].onclick=function(){
+                // 得到每个图片的src路径
+                var imgSrc=this.src;
+                // 将字符串分割为数组
+                var arr=imgSrc.split('/');
+                // 获取图片名文件包
+                var fileFullName=arr[arr.length-1];
+                // 找到最后一个.出现的位置  求出文件名来  定义一个变量接收文件名
+                var filename=fileFullName.substring(0,fileFullName.lastIndexOf('.'));
+                input1.value+='[em_'+filename+']';
+                // 让表情隐藏起来
+                biaoQing.style.display='none';
+                flag=true;
+            }
+        }
+
+        //给发送按钮添加一个点击事件
+        Send.onclick=function(){
+            // 获取输入框当前输入的值   trim()去除两侧的空格
+            var str = input1.value.trim();
+
+            var res=/\[em_([0-9]*)\]/gi;
+            str=str.replace(res,"<img src='images/$1.gif'/>");
+            
+            if(!str){
+                alert('输入内容不能为空');
+                return false;
+            }
+            // 创建一个span标签用于接收input里的值
+            var span=document.createElement('span');
+            span.innerHTML=str;
+            // 将span添加到bgImg的大盒子里面
+            bgImg.appendChild(span);
+
+            // 将图片定位到最右边
+            span.style.left=bgImg.offsetWidth+'px'
+            // 弹幕距离顶部最大的距离
+            var maxTop=bgImg.offsetHeight-span.offsetHeight;
+            span.style.top=sui(0,maxTop)+'px';
+            donghua(span,-span.offsetWidth,function(){
+                bgImg.removeChild(span);
+            });
+            input1.value='';
+
+        }
+
+        // 创建一个最大值最小值函数
+        function sui(big,small){
+            var num=Math.floor(Math.random()*(big-small+1)+small);
+            return num;
+        }
+
+        //封装一个动画
+        function donghua(obj,target,callback){
+
+            // 开始定时器让对象移动
+            obj.timer=setInterval(function(){
+                var step=-1;
+                // console.log(obj.offsetLeft)
+                if(obj.offsetLeft==target){
+                    clearInterval(obj.timer);
+                    if(callback){
+                        callback();
+                    }
+                }else{
+                    obj.style.left=obj.offsetLeft+step+'px';
+                    // console.log(obj.offsetLeft)
+                }
+                    
+            },1)
+        }
+    </script>
+</body>
+
+</html>
