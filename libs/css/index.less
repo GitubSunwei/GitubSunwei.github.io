@@ -13,7 +13,10 @@ body {
 ul {
     list-style: none;
 }
-a { text-decoration: none}
+
+a {
+    text-decoration: none
+}
 
 @media screen and (max-width:768px) {
     .asideBar {
@@ -60,8 +63,13 @@ a { text-decoration: none}
         section {
             padding: 3em 0;
         }
-        
+
     }
+
+    // 掌握技能
+    // .col-xs-4{
+    //     flex: 0 0 33%;
+    // }
 }
 
 @media screen and (min-width:769px) {
@@ -137,6 +145,11 @@ a { text-decoration: none}
             padding: 5em 0;
         }
     }
+
+    // 掌握技能
+    .col-sm-3{
+        flex: 0 0 25%;
+    }
 }
 
 
@@ -144,7 +157,7 @@ a { text-decoration: none}
 main {
 
     // margin-left: 300px;
-    
+
 
     .wrap {
         margin: 0 auto;
@@ -193,12 +206,59 @@ main {
         }
     }
 
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #b0d2d8;
+        border-radius: 3px;
+    }
+
     // 掌握的技能
     .master-skills {
         background: #ffca40;
+
+        .row {
+            padding: 0 15px;
+            overflow: auto;
+            margin-left: 0;
+            margin-right: 0;
+            flex-wrap: nowrap;
+            display: flex;
+            // max-width: 1000px;
+
+            .row-item {
+                text-align: center;
+                
+                // max-width: 25%;
+            }
+
+            .col-xs-4{
+                flex: 0 0 33%;
+            }
+
+            .skill-icon {
+                width: 100px;
+                height: 100px;
+                margin: 0 auto;
+                background: #fff;
+                border-radius: 100%;
+                box-shadow: 0 5px rgba(0, 0, 0, 0.3);
+            }
+
+            i {
+                font-size: 50px;
+                line-height: 100px;
+                transition: transform 0.5s;
+            }
+        }
+
     }
 
     // 2、掌握的技能
+
 
 
     // 3、0个人作品
@@ -209,38 +269,42 @@ main {
 }
 
 // 个人作品
-.works{
+.works {
     padding: 0 30px;
-    h2{
-        padding: 10px;
+
+    h2 {
+        padding: 30px 0;
     }
-    h3{
+
+    h3 {
         margin-bottom: 20px;
     }
 
-    a{
+    a {
         text-decoration: none;
-        
+
     }
-    
-    a:hover p{
+
+    a:hover p {
         color: #ffca40;
     }
 
-    .works-item{
-        img{
+    .works-item {
+        img {
             width: 100%;
             height: 100%;
             transition: transform 0.3s;
         }
-        img:hover{
+
+        img:hover {
             transform: scale(1.05);
         }
     }
-    p{
+
+    p {
         text-align: center;
         margin: 1em auto;
         color: #c40b00;
     }
-    
+
 }

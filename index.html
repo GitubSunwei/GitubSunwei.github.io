@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>薇简历</title>
 </head>
 <link rel="shortcut icon" href="./libs/img/logo.ico" type="image/x-icon">
 <link rel="stylesheet" href="./libs/bootstrap-3.3.7-dist/css/bootstrap.min.css">
@@ -24,9 +24,9 @@
             </div>
         </div>
         <div class="nav">
-            <a href="javascript:;">关于我</a>
-            <a href="javascript:;">技能介绍</a>
-            <a href="javascript:;">往期作品</a>
+            <a href="#info">关于我</a>
+            <a href="#skills">技能介绍</a>
+            <a href="#works">往期作品</a>
             <a href="javascript:;">联系我吧</a>
         </div>
     </aside>
@@ -34,12 +34,12 @@
     <!-- 主要内容 -->
     <main>
         <!-- 1、0关于我 -->
-        <section class="aboutMe">
+        <section class="aboutMe" id="info">
             <div class="wrap">
                 <h2 class="title">
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <span>关于我</span>
-                    <i>/about me</i> 
+                    <i>/about me</i>
                 </h2>
 
                 <div class="row">
@@ -50,7 +50,7 @@
                             <li>性别：男</li>
                             <li>年龄：21</li>
                             <li>民族：汉</li>
-                            <li>学历：专科</li>
+                            <li>籍贯：江西</li>
                         </ul>
                     </div>
                     <div class="col-sm-6">
@@ -63,8 +63,8 @@
                                 </span>
                                 经历：九江职业技术学院
                             </li>
-                            <li>邮箱：<a href="https://gitubsunwei.github.io">18969653044@163.com</a></li>
-                            <li>gitHub：<a href="mailto:2363816146@qq.com">https:www.baidu.com</a></li>
+                            <li>邮箱：<a href="mailto:2363816146@qq.com">2363816146@qq.com</a></li>
+                            <li>gitHub：<a href="https://gitubsunwei.github.io/" target="_blank">gitubsunwei.github.io</a></li>
                         </ul>
                     </div>
 
@@ -73,16 +73,81 @@
             </div>
         </section>
         <!-- 2、0掌握的技能 -->
-        <section class="master-skills">
+        <section class="master-skills" id="skills">
             <div class="wrap">
                 <h2 class="title">
                     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                     掌握的技能
                 </h2>
+                <div class="row srcollable">
+                    <div class="col-sm-3 col-xs-4 row-item">
+                        <div class="skill-icon">
+                            <i class="fa fa-html5"></i>
+                        </div>
+                        <div class="skill-title">
+                            <h3>HTML 5</h3>
+                            <p>熟悉使用HTML5网站的架构和开发</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-4 row-item">
+                        <div class="skill-icon">
+                            <i class="fa fa-html5"></i>
+                        </div>
+                        <div class="skill-title">
+                            <h3>HTML 5</h3>
+                            <p>熟悉使用HTML5网站的架构和开发</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-4 row-item">
+                        <div class="skill-icon">
+                            <i class="fa fa-html5"></i>
+                        </div>
+                        <div class="skill-title">
+                            <h3>HTML 5</h3>
+                            <p>熟悉使用HTML5网站的架构和开发</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-4 row-item">
+                        <div class="skill-icon">
+                            <i class="fa fa-html5"></i>
+                        </div>
+                        <div class="skill-title">
+                            <h3>HTML 5</h3>
+                            <p>熟悉使用HTML5网站的架构和开发</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-4 row-item">
+                        <div class="skill-icon">
+                            <i class="fa fa-html5"></i>
+                        </div>
+                        <div class="skill-title">
+                            <h3>HTML 5</h3>
+                            <p>熟悉使用HTML5网站的架构和开发</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-4 row-item">
+                        <div class="skill-icon">
+                            <i class="fa fa-html5"></i>
+                        </div>
+                        <div class="skill-title">
+                            <h3>HTML 5</h3>
+                            <p>熟悉使用HTML5网站的架构和开发</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-4 row-item">
+                        <div class="skill-icon">
+                            <i class="fa fa-html5"></i>
+                        </div>
+                        <div class="skill-title">
+                            <h3>HTML 5</h3>
+                            <p>熟悉使用HTML5网站的架构和开发</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <!-- 3、0个人作品 -->
-        <section class="works">
+        <section class="works" id="works">
             <div class="wrap">
                 <h2>
                     <i class="fa fa-trophy" aria-hidden="true"></i>
@@ -148,7 +213,7 @@
                         </a>
                     </div>
                     <div class="col-sm-6">
-                        <a href="./html5/03.绘制饼状图(三).html">
+                        <a href="./html5/饼状图.html">
                             <div class="works-item">
                                 <img src="./html5/饼状图.png" alt="">
                             </div>
@@ -162,6 +227,13 @@
 
     <script src="./libs/jquery/jquery-3.4.1.min.js"></script>
     <script src="./libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script>
+        //jquery
+        $(".nav a").bind("click touch", function () {
+            //根据a标签的href转换为id选择器，获取id元素所处的位置
+            $('html,body').animate({ scrollTop: ($($(this).attr('href')).offset().top) }, 500);
+        });
+    </script>
 </body>
 
 </html>
