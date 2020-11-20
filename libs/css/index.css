@@ -49,6 +49,9 @@ a {
   main section {
     padding: 3em 0;
   }
+  .col-xs-4 {
+    flex: 0 0 33%;
+  }
 }
 @media screen and (min-width: 769px) {
   .asideBar {
@@ -171,9 +174,6 @@ main .master-skills .row {
 }
 main .master-skills .row .row-item {
   text-align: center;
-}
-main .master-skills .row .col-xs-4 {
-  flex: 0 0 33%;
 }
 main .master-skills .row .skill-icon {
   width: 100px;
